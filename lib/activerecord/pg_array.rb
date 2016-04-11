@@ -114,7 +114,7 @@ module ActiveRecord
 
                 # it might be better to define a scope instead
                 define_method friendly_attr_plural.to_sym do
-                  klass.where(id: [atr[self]])
+                  klass.where(id: [atr[self]].flatten)
                 end
               rescue NameError
               end
