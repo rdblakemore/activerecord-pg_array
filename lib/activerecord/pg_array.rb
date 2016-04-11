@@ -10,7 +10,7 @@ module ActiveRecord
           @@id_attr_map = hash
         end
 
-        self.column_types.to_a.select { |c| c[1].instance_variable_get('@array') }.map(&:first).each do |attr_name|
+        self.column_types.to_a.select { |c| c[1].is_a?(ActiveRecord::ConnectionAdapters::PostgreSQL::OID::Array) }.map(&:first).each do |attr_name|
           ids_regex = /_ids$/
           friendly_attr = attr_name.sub(ids_regex,'')
           segs = friendly_attr.split('_')
